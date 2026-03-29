@@ -1,0 +1,17 @@
+/* Additional classes for MovieRow */
+.row-container {
+  margin-bottom: 2rem;
+}
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 768px) {
+  .section-title { padding-left: 3rem; padding-right: 3rem; }
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
