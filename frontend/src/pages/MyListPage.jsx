@@ -5,13 +5,12 @@ import { historyService } from '../services/firestore';
 import { useAuth } from '../context/AuthContext';
 import { FiTrash2, FiPlay, FiClock, FiBookmark } from 'react-icons/fi';
 import toast from 'react-hot-toast';
-import { getImageUrl } from '../utils/imageUtils';
 
-
+const IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 
 function MovieCard({ item, onRemove, showProgress = false }) {
   const mediaType = item.media_type || 'movie';
-  const poster = item.poster_path ? getImageUrl(item.poster_path, 'w342') : null;
+  const poster = item.poster_path ? `${IMG_BASE}${item.poster_path}` : null;
   const year = item.release_date?.slice(0, 4);
   const rating = item.vote_average?.toFixed(1);
 

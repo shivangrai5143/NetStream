@@ -8,9 +8,9 @@ import {
   FiPlay, FiPlus, FiCheck, FiStar, FiCalendar,
   FiClock, FiGlobe, FiArrowLeft
 } from 'react-icons/fi';
-import { getImageUrl } from '../utils/imageUtils';
 
-
+const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
+const BACKDROP_BASE = 'https://image.tmdb.org/t/p/original';
 
 export default function MovieDetailPage({ type = 'movie' }) {
   const { id } = useParams();
@@ -44,8 +44,8 @@ export default function MovieDetailPage({ type = 'movie' }) {
   if (!movie) return <div className="min-h-screen bg-netflix-black flex items-center justify-center text-white">Movie not found</div>;
 
   const title = movie.title || movie.name;
-  const backdrop = movie.backdrop_path ? getImageUrl(movie.backdrop_path, 'original') : null;
-  const poster = movie.poster_path ? getImageUrl(movie.poster_path, 'w500') : null;
+  const backdrop = movie.backdrop_path ? `${BACKDROP_BASE}${movie.backdrop_path}` : null;
+  const poster = movie.poster_path ? `${IMG_BASE}${movie.poster_path}` : null;
   const year = (movie.release_date || movie.first_air_date)?.slice(0, 4);
   const rating = movie.vote_average?.toFixed(1);
   const runtime = movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : movie.episode_run_time?.[0] ? `${movie.episode_run_time[0]}m/ep` : null;
@@ -261,7 +261,7 @@ export default function MovieDetailPage({ type = 'movie' }) {
                         <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-800 flex-shrink-0 ring-2 ring-gray-700">
                           {person.profile_path ? (
                             <img
-                              src={getImageUrl(person.profile_path, 'w185')}
+                              src={`https://image.tmdb.org/t/p/w185${person.profile_path}`}
                               alt={person.name}
                               className="w-full h-full object-cover"
                               loading="lazy"

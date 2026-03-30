@@ -4,9 +4,9 @@ import { FiPlay, FiPlus, FiCheck, FiInfo, FiStar } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import { watchlistAPI } from '../../services/api';
 import toast from 'react-hot-toast';
-import { getImageUrl } from '../../utils/imageUtils';
 
-
+const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
+const BACKDROP_BASE = 'https://image.tmdb.org/t/p/w780';
 
 export default function MovieCard({ movie, type = 'movie' }) {
   const navigate = useNavigate();
@@ -17,8 +17,8 @@ export default function MovieCard({ movie, type = 'movie' }) {
 
   const id = movie.id;
   const title = movie.title || movie.name;
-  const poster = movie.poster_path ? getImageUrl(movie.poster_path, 'w500') : null;
-  const backdrop = movie.backdrop_path ? getImageUrl(movie.backdrop_path, 'w780') : poster;
+  const poster = movie.poster_path ? `${IMG_BASE}${movie.poster_path}` : null;
+  const backdrop = movie.backdrop_path ? `${BACKDROP_BASE}${movie.backdrop_path}` : poster;
   const rating = movie.vote_average?.toFixed(1);
   const mediaType = movie.media_type || type;
   const year = (movie.release_date || movie.first_air_date)?.slice(0, 4);

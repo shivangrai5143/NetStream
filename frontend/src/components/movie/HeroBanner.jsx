@@ -4,9 +4,8 @@ import { FiPlay, FiInfo, FiPlus, FiCheck } from 'react-icons/fi';
 import { watchlistAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
-import { getImageUrl } from '../../utils/imageUtils';
 
-
+const BACKDROP_BASE = 'https://image.tmdb.org/t/p/original';
 
 export default function HeroBanner({ movies = [], loading = false }) {
   const navigate = useNavigate();
@@ -70,7 +69,7 @@ export default function HeroBanner({ movies = [], loading = false }) {
   if (!movie) return null;
 
   const title = movie.title || movie.name;
-  const backdrop = movie.backdrop_path ? getImageUrl(movie.backdrop_path, 'original') : null;
+  const backdrop = movie.backdrop_path ? `${BACKDROP_BASE}${movie.backdrop_path}` : null;
   const overview = movie.overview?.slice(0, 200) + (movie.overview?.length > 200 ? '...' : '');
   const year = (movie.release_date || movie.first_air_date)?.slice(0, 4);
   const rating = movie.vote_average?.toFixed(1);

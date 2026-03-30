@@ -3,8 +3,8 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { useSearch } from '../hooks/useMovies';
 import { movieAPI } from '../services/api';
 import { FiSearch, FiX, FiFilter } from 'react-icons/fi';
-import { getImageUrl } from '../utils/imageUtils';
 
+const IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 const PLACEHOLDER = 'https://via.placeholder.com/342x512/1a1a1a/666?text=No+Image';
 
 const GENRES = [
@@ -43,7 +43,7 @@ function MovieGrid({ movies, loading, hasMore, onLoadMore }) {
         {movies.map((movie) => {
           const mediaType = movie.media_type || 'movie';
           const title = movie.title || movie.name;
-          const poster = movie.poster_path ? getImageUrl(movie.poster_path, 'w342') : PLACEHOLDER;
+          const poster = movie.poster_path ? `${IMG_BASE}${movie.poster_path}` : PLACEHOLDER;
           const rating = movie.vote_average?.toFixed(1);
           const year = (movie.release_date || movie.first_air_date)?.slice(0, 4);
 

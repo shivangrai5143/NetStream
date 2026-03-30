@@ -3,7 +3,6 @@ import { adminService } from '../services/firestore';
 import { movieAPI } from '../services/tmdb';
 import { FiTrash2, FiSearch, FiCheck, FiUsers, FiFilm } from 'react-icons/fi';
 import toast from 'react-hot-toast';
-import { getImageUrl } from '../utils/imageUtils';
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('featured');
@@ -138,7 +137,7 @@ export default function AdminPage() {
                       return (
                         <div key={movie.id} className="flex gap-4 p-3 bg-zinc-900 rounded items-center border border-zinc-800">
                           {movie.poster_path ? (
-                            <img src={getImageUrl(movie.poster_path, 'w92')} className="w-12 h-18 object-cover rounded" alt="" />
+                            <img src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`} className="w-12 h-18 object-cover rounded" alt="" />
                           ) : (
                             <div className="w-12 h-18 bg-zinc-800 rounded flex items-center justify-center text-xs text-center p-1 text-gray-500">No Img</div>
                           )}

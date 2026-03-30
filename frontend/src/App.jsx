@@ -40,8 +40,8 @@ const GuestOnly = ({ children }) => {
 };
 
 const FullScreenLoader = () => (
-  <div className="min-h-screen bg-netflix-black flex flex-col items-center justify-center">
-    <h1 className="text-netflix-red font-black text-4xl tracking-tighter uppercase italic animate-pulse mb-4">NetStream</h1>
+  <div className="min-h-screen bg-netflix-black flex items-center justify-center">
+    <img src="/netflix-logo.svg" alt="Netflix" className="w-32 animate-pulse" />
   </div>
 );
 
@@ -99,7 +99,7 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter>
       <AuthProvider>
         <AppRoutes />
         <Toaster
